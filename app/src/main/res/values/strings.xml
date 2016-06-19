@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">&#x200A;&#x200A;Mr. Cofrade</string>
+    <string name="title_activity_maps">&#x200A;&#x200A;Mr. Cofrade</string>
+
+    <string name="app_navigation_view_name">Cofradías de Bilbao</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="tab_detail_one">Cofradía</string>
+    <string name="tab_detail_two">Detalle</string>
+    <string name="tab_detail_three">Pasos</string>
+    <string name="tab_detail_four">Galería</string>
+
+    <string name="tab_maps_one">Detalle</string>
+    <string name="tab_maps_two">Indicaciones</string>
+    <string name="tab_maps_three">Mapa</string>
+
+    <!-- Etiquetas detalle Cofradía -->
+    <string name="detail_cofradia_vestimenta">Vestimenta:&#x200A;</string>
+    <string name="detail_cofradia_fundacion">Fundación:&#x200A;</string>
+    <string name="detail_cofradia_sede">Sede:&#x200A;</string>
+    <string name="detail_cofradia_numero_procesiones">Número de Procesiones:&#x200A;</string>
+    <string name="detail_cofradia_hermano_abad">Hermano Abad:&#x200A;</string>
+    <string name="titulo_procesiones_view">PROCESIONES</string>
+
+    <!-- Etiquetas detalle Procesion -->
+    <string name="detail_procesion_nombre">Procesión:&#x200A;</string>
+    <string name="detail_procesion_dia">Día:&#x200A;</string>
+    <string name="detail_procesion_fecha">Fecha:&#x200A;</string>
+    <string name="detail_procesion_hora">Hora de inicio:&#x200A;</string>
+    <string name="detail_procesion_inicio">Lugar de inicio:&#x200A;</string>
+    <string name="detail_procesion_pasos">Pasos:&#x200A;</string>
+
+    <string name="imagen_galeria">Imagen Galería</string>
+    <string name="imagen_detail_procesion">Imagen Procesión</string>
+    <string name="imagen_cofradia">Imagen Cofradía</string>
+    <string name="escudo_cofradia">Escudo Cofradía</string>
+    <string name="imagen_evento">Imagen Evento</string>
+    <string name="imagen_indicacion">Imagen Indicación</string>
+
+    <string name="menu_calendario_eventos">Calendario de Eventos</string>
+    <string name="menu_santa_biblia">Santa Biblia</string>
+    <string name="menu_galeria">Galería de Imágenes</string>
+    <string name="menu_pasos">Galería de Pasos</string>
+    <string name="menu_contacto">Contactos</string>
+    <string name="menu_museo">Museo de Pasos</string>
+
+    <string name="action_share">Compartir</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

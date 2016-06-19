@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/etiqueta"
+                android:text="@string/detail_cofradia_fundacion" />
+
+            <TextView
+                android:id="@+id/cofradia_fundacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/texto_detalle"
+                android:text="Medium Text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/etiqueta"
+                android:text="@string/detail_cofradia_sede" />
+
+            <TextView
+                android:id="@+id/cofradia_sede"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/texto_detalle"
+                android:text="Medium Text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/etiqueta"
+                android:text="@string/detail_cofradia_numero_procesiones" />
+
+            <TextView
+                android:id="@+id/cofradia_procesiones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/texto_detalle"
+                android:text="Medium Text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/etiqueta"
+                android:text="@string/detail_cofradia_hermano_abad" />
+
+            <TextView
+                android:id="@+id/cofradia_abad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/texto_detalle"
+                android:text="Medium Text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lastLayout"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/etiqueta"
+                android:text="@string/detail_cofradia_vestimenta" />
+
+            <TextView
+                android:id="@+id/cofradia_vestidura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/texto_detalle"
+                android:text="Medium Text" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloRecyclerView"
+            android:padding="3dp"
+            android:text="@string/titulo_procesiones_view"
+            style="@style/title_black" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

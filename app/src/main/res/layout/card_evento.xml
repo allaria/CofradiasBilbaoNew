@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:padding="3dp"
+        android:id="@+id/cabecera">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imagenOrganizadorEvento"
+            android:contentDescription="@string/escudo_cofradia" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Medium Text"
+            android:id="@+id/organizadorEvento"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:gravity="center_horizontal"
+            android:shadowColor="#ffffff"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="1" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imagenVista"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/cabecera"
+        android:contentDescription="@string/imagen_evento" />
+
+    <TextView
+        android:id="@+id/descripcionEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:gravity="center_horizontal"
+        style="@style/title_black"
+        android:layout_below="@+id/imagenVista"/>
+</RelativeLayout>
