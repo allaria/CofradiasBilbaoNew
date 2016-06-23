@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Contacto implements Serializable {
 
-    private String nombreCofradia, sede, direccion, escudoCofradia, telefono, web, email;
+    private String nombreCofradia, sede, direccion, email, escudoCofradia, id_cofradia, telefono, web;
 
     public String getNombreCofradia() {
         return nombreCofradia;
@@ -49,6 +49,14 @@ public class Contacto implements Serializable {
         this.escudoCofradia = escudoCofradia;
     }
 
+    public String getIdCofradia() {
+        return id_cofradia;
+    }
+
+    public void setIdCofradia(String id_cofradia) {
+        this.id_cofradia = id_cofradia;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -70,12 +78,13 @@ public class Contacto implements Serializable {
     public Contacto() {
     }
 
-    public Contacto(String nombreCofradia, String sede, String direccion, String email, String escudoCofradia, String telefono, String web) {
+    public Contacto(String nombreCofradia, String sede, String direccion, String email, String id_cofradia, String escudoCofradia, String telefono, String web) {
         this.nombreCofradia = nombreCofradia;
         this.sede = sede;
         this.direccion = direccion;
         this.email = email;
         this.escudoCofradia = escudoCofradia;
+        this.id_cofradia = id_cofradia;
         this.telefono = telefono;
         this.web = web;
 

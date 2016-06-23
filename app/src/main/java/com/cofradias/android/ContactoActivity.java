@@ -1,5 +1,6 @@
 package com.cofradias.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.cofradias.android.model.object.Contacto;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
 /**
@@ -67,12 +69,13 @@ public class ContactoActivity extends AppCompatActivity implements ContactoAdapt
                     String direccion = cofradia.getDireccion();
                     String email = cofradia.getEmail();
                     String escudoCofradia = cofradia.getImagenEscudo();
+                    String id_cofradia = cofradia.getId_cofradia();
                     String telefono = cofradia.getTelefono();
                     String web = cofradia.getWeb();
 
 
                     //Creamos el nuevo objeto Contacto
-                    Contacto contacto = new Contacto(nombreCofradia, sede, direccion, email, escudoCofradia, telefono, web);
+                    Contacto contacto = new Contacto(nombreCofradia, sede, direccion, email, id_cofradia, escudoCofradia, telefono, web);
 
                     mContactoAdapter.addContacto(contacto);
                     mContactoAdapter.notifyDataSetChanged();
@@ -91,10 +94,10 @@ public class ContactoActivity extends AppCompatActivity implements ContactoAdapt
     @Override
     public void onClickContacto(int position) {
 
-/*        selectedContacto = mContactoAdapter.getSelectedContacto(position);
+        selectedContacto = mContactoAdapter.getSelectedContacto(position);
 
         Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_COFRADIAS);
-        Query queryRef = myFirebaseRef.orderByChild("id_cofradia").equalTo(selectedContacto.getId_cofradia());
+        Query queryRef = myFirebaseRef.orderByChild("id_cofradia").equalTo(selectedContacto.getIdCofradia());
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -104,9 +107,7 @@ public class ContactoActivity extends AppCompatActivity implements ContactoAdapt
                     cofradia = dataSnapshot.getValue(Cofradia.class);
                 }
 
-                Intent intent = new Intent(getApplicationContext(), DetailMostrarImagenActivity.class);
-                intent.putExtra(Constants.REFERENCE.PASO, selectedContacto);
-                intent.putExtra(Constants.REFERENCE.ORIGEN, "ContactoActivity");
+                Intent intent = new Intent(getApplicationContext(), DetailCofradiaActivity.class);
                 intent.putExtra(Constants.REFERENCE.COFRADIA, cofradia);
                 startActivity(intent);
             }
@@ -114,7 +115,7 @@ public class ContactoActivity extends AppCompatActivity implements ContactoAdapt
             @Override
             public void onCancelled(FirebaseError error) {
             }
-        });*/
+        });
 
 
     }
