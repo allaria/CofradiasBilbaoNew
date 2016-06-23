@@ -43,11 +43,12 @@
     <string name="imagen_indicacion">Imagen Indicación</string>
 
     <string name="menu_calendario_eventos">Calendario de Eventos</string>
-    <string name="menu_santa_biblia">Santa Biblia</string>
     <string name="menu_galeria">Galería de Imágenes</string>
     <string name="menu_pasos">Galería de Pasos</string>
     <string name="menu_contacto">Contactos</string>
     <string name="menu_museo">Museo de Pasos</string>
+    <string name="menu_configuracion">Configuración</string>
+    <string name="menu_santa_biblia">Santa Biblia</string>
 
     <string name="action_share">Compartir</string>
     <string name="action_settings">Settings</string>

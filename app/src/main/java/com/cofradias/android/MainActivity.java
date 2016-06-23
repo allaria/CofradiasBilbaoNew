@@ -170,6 +170,8 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
             Intent intentMenu = new Intent(MainActivity.this, MuseoPasosActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
+        } else if (id == R.id.nav_configuracion) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

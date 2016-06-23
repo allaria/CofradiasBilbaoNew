@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/app_name">
-        <menu>
-            <group
-                android:id="@+id/menu_top"
-                android:checkableBehavior="single">
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
 
-                <item
-                    android:id="@+id/nav_calendario_eventos"
-                    android:icon="@drawable/ic_menu_calendar"
-                    android:title="@string/menu_calendario_eventos" />
-                <item
-                    android:id="@+id/nav_galeria"
-                    android:icon="@drawable/ic_menu_galleria"
-                    android:title="@string/menu_galeria" />
-                <item
-                    android:id="@+id/nav_pasos"
-                    android:icon="@drawable/ic_menu_pasos"
-                    android:title="@string/menu_pasos" />
+        <item
+            android:id="@+id/nav_calendario_eventos"
+            android:icon="@drawable/ic_menu_calendar"
+            android:title="@string/menu_calendario_eventos" />
 
-                <item
-                    android:id="@+id/nav_contacto"
-                    android:icon="@drawable/ic_menu_contacto"
-                    android:title="@string/menu_contacto" />
-            </group>
+        <item
+            android:id="@+id/nav_galeria"
+            android:icon="@drawable/ic_menu_galleria"
+            android:title="@string/menu_galeria" />
 
-            <group
-                android:id="@+id/menu_bottom"
-                android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pasos"
+            android:icon="@drawable/ic_menu_pasos"
+            android:title="@string/menu_pasos" />
 
-                <item
-                    android:id="@+id/nav_museo_pasos"
-                    android:icon="@drawable/ic_menu_web"
-                    android:title="@string/menu_museo" />
+        <item
+            android:id="@+id/nav_contacto"
+            android:icon="@drawable/ic_menu_contacto"
+            android:title="@string/menu_contacto" />
+    </group>
 
-            </group>
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
 
-        </menu>
-    </item>
+        <item
+            android:id="@+id/nav_museo_pasos"
+            android:icon="@drawable/ic_menu_web"
+            android:title="@string/menu_museo" />
+
+        <item
+            android:id="@+id/nav_configuracion"
+            android:icon="@drawable/ic_menu_config"
+            android:title="@string/menu_configuracion" />
+    </group>
 
 </menu>
