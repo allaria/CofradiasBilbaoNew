@@ -1,7 +1,6 @@
 package com.cofradias.android;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -163,18 +162,14 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
             Intent intentMenu = new Intent(MainActivity.this, PasoActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
-        } else if (id == R.id.nav_museo_pasos) {
-            Intent intentMenu = new Intent(MainActivity.this, MuseoPasosActivity.class);
-            intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intentMenu);
         } else if (id == R.id.nav_contacto) {
             Intent intentMenu = new Intent(MainActivity.this, ContactoActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
-        } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("market://details?id=com.bilbao.MejoraBilbao"));
-            startActivity(intent);
+        } else if (id == R.id.nav_museo_pasos) {
+            Intent intentMenu = new Intent(MainActivity.this, MuseoPasosActivity.class);
+            intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentMenu);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
