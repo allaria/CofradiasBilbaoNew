@@ -6,7 +6,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <WebView
-        android:id="@+id/webView"
+        android:id="@+id/museo_pasos_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

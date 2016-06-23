@@ -29,7 +29,7 @@ public class MuseoPasosActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mWebView = (WebView) findViewById(R.id.webView);
+        mWebView = (WebView) findViewById(R.id.museo_pasos_webView);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);

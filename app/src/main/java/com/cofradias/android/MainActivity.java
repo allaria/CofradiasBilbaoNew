@@ -155,10 +155,6 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
             Intent intentMenu = new Intent(MainActivity.this, JornadaActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
-        } else if (id == R.id.nav_santa_biblia) {
-            Intent intentMenu = new Intent(MainActivity.this, BibliaActivity.class);
-            intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intentMenu);
         } else if (id == R.id.nav_galeria) {
             Intent intentMenu = new Intent(MainActivity.this, GaleriaActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

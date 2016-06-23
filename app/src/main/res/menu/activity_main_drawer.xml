@@ -31,10 +31,6 @@
                 android:icon="@drawable/ic_menu_contacto"
                 android:title="@string/menu_contacto" />
             <item
-                android:id="@+id/nav_santa_biblia"
-                android:icon="@drawable/ic_menu_biblia"
-                android:title="@string/menu_santa_biblia" />
-            <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
