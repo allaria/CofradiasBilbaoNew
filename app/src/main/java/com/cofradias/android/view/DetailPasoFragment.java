@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.cofradias.android.DetailMostrarImagenActivity;
@@ -27,11 +28,10 @@ import com.firebase.client.ValueEventListener;
 
 public class DetailPasoFragment extends Fragment implements PasoAdapter.PasoClickListener {
 
-    private Cofradia cofradia;
-
+    private ProgressBar spinner;
     private RecyclerView mRecyclerView;
     private PasoAdapter mPasoAdapter;
-
+    private Cofradia cofradia;
     private ImageView mEscudoDetailPhoto;
     private TextView mNameCofradia;
 
@@ -46,6 +46,9 @@ public class DetailPasoFragment extends Fragment implements PasoAdapter.PasoClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         contentView = inflater.inflate(R.layout.detail_paso_content,container, false);
+
+        spinner = (ProgressBar)contentView.findViewById(R.id.paso_detail_progress_bar);
+        spinner.setVisibility(View.VISIBLE);
 
         mRecyclerView = (RecyclerView) contentView.findViewById(R.id.recyclerViewPaso);
         mRecyclerView.setHasFixedSize(true);
@@ -75,6 +78,8 @@ public class DetailPasoFragment extends Fragment implements PasoAdapter.PasoClic
                     mPasoAdapter.addPaso(dataSnapshot.getValue(Paso.class));
                     mPasoAdapter.notifyDataSetChanged();
                 }
+
+                spinner.setVisibility(View.GONE);
             }
 
             @Override

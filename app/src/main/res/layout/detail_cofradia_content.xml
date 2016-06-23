@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tituloRecyclerView"
             android:padding="3dp"
-            android:text="@string/titulo_procesiones_view"
+            android:text="@string/detail_titulo_procesiones_view"
             style="@style/title_black" />
 
         <android.support.v7.widget.RecyclerView

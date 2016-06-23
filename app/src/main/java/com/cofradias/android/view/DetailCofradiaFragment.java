@@ -26,10 +26,8 @@ import com.firebase.client.ValueEventListener;
 public class DetailCofradiaFragment extends Fragment implements ProcesionAdapter.ProcesionClickListener {
 
     private Cofradia cofradia;
-
     private RecyclerView mRecyclerView;
     private ProcesionAdapter mProcesionAdapter;
-
     private ImageView mEscudoDetailPhoto, mDetailPhoto;
     private TextView mNombreCofradia, mFundacion, mSede, mPasos, mTexto, mHernamoAbad, mTunica, mNumeroProcesiones, mProcesion;
 

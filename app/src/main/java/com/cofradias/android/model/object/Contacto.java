@@ -3,27 +3,11 @@ package com.cofradias.android.model.object;
 import java.io.Serializable;
 
 /**
- * Created by alaria on 17/06/2016.
+ * Created by alaria on 22/06/2016.
  */
 public class Contacto implements Serializable {
 
-    private String direccion, id_cofradia, nombreCofradia, sede, telefono, web;
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getId_cofradia() {
-        return id_cofradia;
-    }
-
-    public void setId_cofradia(String id_cofradia) {
-        this.id_cofradia = id_cofradia;
-    }
+    private String nombreCofradia, sede, direccion, escudoCofradia, telefono, web, email;
 
     public String getNombreCofradia() {
         return nombreCofradia;
@@ -39,6 +23,30 @@ public class Contacto implements Serializable {
 
     public void setSede(String sede) {
         this.sede = sede;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEscudoCofradia() {
+        return escudoCofradia;
+    }
+
+    public void setEscudoCofradia(String escudoCofradia) {
+        this.escudoCofradia = escudoCofradia;
     }
 
     public String getTelefono() {
@@ -57,6 +65,19 @@ public class Contacto implements Serializable {
         this.web = web;
     }
 
+
+
     public Contacto() {
+    }
+
+    public Contacto(String nombreCofradia, String sede, String direccion, String email, String escudoCofradia, String telefono, String web) {
+        this.nombreCofradia = nombreCofradia;
+        this.sede = sede;
+        this.direccion = direccion;
+        this.email = email;
+        this.escudoCofradia = escudoCofradia;
+        this.telefono = telefono;
+        this.web = web;
+
     }
 }

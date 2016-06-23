@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.cofradias.android.DetailMostrarImagenActivity;
@@ -27,11 +28,10 @@ import com.firebase.client.ValueEventListener;
 
 public class DetailGaleriaFragment extends Fragment implements GaleriaAdapter.GaleriaClickListener {
 
-    private Cofradia cofradia;
-
+    private ProgressBar spinner;
     private RecyclerView mRecyclerView;
     private GaleriaAdapter mImagenGaleriaAdapter;
-
+    private Cofradia cofradia;
     private ImageView mEscudoDetailPhoto;
     private TextView mNombreCofradia;
 
@@ -46,6 +46,9 @@ public class DetailGaleriaFragment extends Fragment implements GaleriaAdapter.Ga
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         contentView = inflater.inflate(R.layout.detail_galeria_content,container, false);
+
+        spinner = (ProgressBar)contentView.findViewById(R.id.galeria_detail_progress_bar);
+        spinner.setVisibility(View.VISIBLE);
 
         mRecyclerView = (RecyclerView) contentView.findViewById(R.id.recyclerViewGaleria);
         mRecyclerView.setHasFixedSize(true);
@@ -75,6 +78,8 @@ public class DetailGaleriaFragment extends Fragment implements GaleriaAdapter.Ga
                     mImagenGaleriaAdapter.addImagenGaleria(dataSnapshot.getValue(ImagenGaleria.class));
                     mImagenGaleriaAdapter.notifyDataSetChanged();
                 }
+
+                spinner.setVisibility(View.GONE);
             }
 
             @Override

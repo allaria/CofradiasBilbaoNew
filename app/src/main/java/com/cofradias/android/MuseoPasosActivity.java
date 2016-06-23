@@ -36,9 +36,12 @@ public class MuseoPasosActivity extends AppCompatActivity {
 
         mWebView.getSettings().setUseWideViewPort(true);
         mWebView.getSettings().setLoadWithOverviewMode(true);
+        mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.getSettings().setDisplayZoomControls(false);
 
         mWebView.setWebViewClient(new MyWebViewClient());
         mWebView.loadUrl("http://www.museodepasosbilbao.com");
+
     }
 
 

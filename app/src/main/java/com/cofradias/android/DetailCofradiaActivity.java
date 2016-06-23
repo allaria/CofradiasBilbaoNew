@@ -22,9 +22,9 @@ import com.squareup.picasso.Picasso;
  */
 public class DetailCofradiaActivity extends AppCompatActivity implements DetailCofradiaFragment.InterfaceDetailCofradia {
 
-    Toolbar toolbar;
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    private Toolbar toolbar;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
     private ImageView mEscudoDetailPhoto;
     private TextView mNombreCofradia;
     private Cofradia cofradia;

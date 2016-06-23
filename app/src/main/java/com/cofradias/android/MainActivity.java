@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -27,16 +28,17 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity implements CofradiaAdapter.CofradiaClickListener,
         NavigationView.OnNavigationItemSelectedListener {
 
+    private ProgressBar spinner;
     private RecyclerView mRecyclerView;
     private CofradiaAdapter mCofradiaAdapter;
-
-
-    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        spinner = (ProgressBar)findViewById(R.id.main_progress_bar);
+        spinner.setVisibility(View.VISIBLE);
 
         Firebase.setAndroidContext(this);
 
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
                     mCofradiaAdapter.addCofradia(dataSnapshot.getValue(Cofradia.class));
                     mCofradiaAdapter.notifyDataSetChanged();
                 }
+
+                spinner.setVisibility(View.GONE);
             }
 
             @Override
@@ -168,9 +172,9 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
         } else if (id == R.id.nav_contacto) {
-//            Intent intentMenu = new Intent(MainActivity.this, ContactoActivity.class);
-//            intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            startActivity(intentMenu);
+            Intent intentMenu = new Intent(MainActivity.this, ContactoActivity.class);
+            intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentMenu);
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("market://details?id=com.bilbao.MejoraBilbao"));

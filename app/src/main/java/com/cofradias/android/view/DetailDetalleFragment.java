@@ -18,7 +18,7 @@ public class DetailDetalleFragment extends Fragment {
     private Cofradia cofradia;
 
     private ImageView mEscudoDetailPhoto, mDetailPhoto;
-    private TextView mNameCofradia, mPasos, mTexto, mTextoPaso;
+    private TextView mNameCofradia, mPasos, mTexto, mTextoPaso, mCofradiaDireccion, mCofradiaTelefono, mCofradiaWeb;
 
     View contentView;
 
@@ -43,6 +43,15 @@ public class DetailDetalleFragment extends Fragment {
 
         mTextoPaso = (TextView) contentView.findViewById(R.id.texto_intro_paso);
         mTextoPaso.setText(cofradia.getTextoIntroPasos());
+
+        mCofradiaDireccion = (TextView) contentView.findViewById(R.id.cofradia_direccion);
+        mCofradiaDireccion.setText(cofradia.getDireccion());
+
+        mCofradiaTelefono = (TextView) contentView.findViewById(R.id.cofradia_telefono);
+        mCofradiaTelefono.setText(cofradia.getTelefono());
+
+        mCofradiaWeb = (TextView) contentView.findViewById(R.id.cofradia_web);
+        mCofradiaWeb.setText(cofradia.getWeb());
 
 //        String detailImg = cofradia.getImagenEscudo();
 //        int idDrawable = getResources().getIdentifier(detailImg, "drawable", getContext().getPackageName());

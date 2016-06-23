@@ -7,7 +7,8 @@ import java.io.Serializable;
  */
 public class Cofradia implements Serializable {
 
-    private String abad, id_cofradia, imagenDetalle, imagenEscudo, nombreCofradia, sede, textoDetalle, textoIntroPasos, vestidura;
+    private String abad, direccion, email, id_cofradia, imagenDetalle, imagenEscudo, nombreCofradia, sede, telefono;
+    private String textoDetalle, textoIntroPasos, vestidura, web;
     private int fundacion, numeroPasos, numeroProcesiones;
 
 
@@ -17,6 +18,22 @@ public class Cofradia implements Serializable {
 
     public void setAbad(String abad) {
         this.abad = abad;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getFundacion() {
@@ -83,6 +100,14 @@ public class Cofradia implements Serializable {
         this.sede = sede;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getTextoDetalle() {
         return textoDetalle;
     }
@@ -107,6 +132,13 @@ public class Cofradia implements Serializable {
         this.vestidura = vestidura;
     }
 
+    public String getWeb() {
+        return web;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
+    }
 
     public Cofradia() {
     }

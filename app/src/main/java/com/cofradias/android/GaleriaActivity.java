@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.cofradias.android.model.adapter.GaleriaAdapter;
 import com.cofradias.android.model.help.Constants;
@@ -23,9 +25,9 @@ import com.firebase.client.ValueEventListener;
 public class GaleriaActivity extends AppCompatActivity implements GaleriaAdapter.GaleriaClickListener{
 
     private static final String LOG_TAG = GaleriaActivity.class.getSimpleName();
+    private ProgressBar spinner;
     private RecyclerView mRecyclerView;
     private GaleriaAdapter mGaleriaAdapter;
-
     private ImagenGaleria selectedImagenGaleria;
     private Cofradia cofradia;
 
@@ -33,6 +35,9 @@ public class GaleriaActivity extends AppCompatActivity implements GaleriaAdapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galeria_activity);
+
+        spinner = (ProgressBar)findViewById(R.id.galeria_progress_bar);
+        spinner.setVisibility(View.VISIBLE);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView_galeria);
         mRecyclerView.setHasFixedSize(true);
@@ -48,7 +53,6 @@ public class GaleriaActivity extends AppCompatActivity implements GaleriaAdapter
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_GALERIA);
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -59,6 +63,8 @@ public class GaleriaActivity extends AppCompatActivity implements GaleriaAdapter
                     mGaleriaAdapter.addImagenGaleria(dataSnapshot.getValue(ImagenGaleria.class));
                     mGaleriaAdapter.notifyDataSetChanged();
                 }
+
+                spinner.setVisibility(View.GONE);
             }
 
             @Override

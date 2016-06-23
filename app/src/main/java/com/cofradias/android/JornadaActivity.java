@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.cofradias.android.model.adapter.JornadaAdapter;
 import com.cofradias.android.model.help.Constants;
@@ -24,6 +26,7 @@ import com.firebase.client.ValueEventListener;
 public class JornadaActivity extends AppCompatActivity implements JornadaAdapter.JornadaClickListener{
 
     private static final String TAG = JornadaActivity.class.getSimpleName();
+    private ProgressBar spinner;
     private RecyclerView mRecyclerView;
     private JornadaAdapter mJornadaAdapter;
 
@@ -32,6 +35,9 @@ public class JornadaActivity extends AppCompatActivity implements JornadaAdapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evento_activity);
+
+        spinner = (ProgressBar)findViewById(R.id.evento_progress_bar);
+        spinner.setVisibility(View.VISIBLE);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView_evento);
         mRecyclerView.setHasFixedSize(true);
@@ -57,6 +63,8 @@ public class JornadaActivity extends AppCompatActivity implements JornadaAdapter
                     mJornadaAdapter.addJornada(dataSnapshot.getValue(Jornada.class));
                     mJornadaAdapter.notifyDataSetChanged();
                 }
+
+                spinner.setVisibility(View.GONE);
             }
 
             @Override

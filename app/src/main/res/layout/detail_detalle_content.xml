@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,8 +15,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="3dp">
+            android:orientation="vertical"
+            android:id="@+id/first_layout"
+            android:padding="3dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -25,26 +26,11 @@
                 android:text="Large Text"
                 android:id="@+id/cofradia_texto" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="3dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cofradia_pasos"
                 style="@style/etiqueta" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="3dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -53,6 +39,86 @@
                 android:id="@+id/texto_intro_paso" />
         </LinearLayout>
 
-    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/second_layout"
+            android:layout_below="@+id/first_layout"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/titulo_contacto"
+                android:text="@string/detail_titulo_contacto"
+                style="@style/title_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/layout_direccion"
+                android:layout_below="@+id/titulo_contacto" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/label_cofradia_direccion"
+                    style="@style/etiqueta"
+                    android:text="@string/detail_cofradia_direccion" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/texto_detalle"
+                    android:id="@+id/cofradia_direccion" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/layout_telefono"
+                android:layout_below="@+id/layout_direccion">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/label_cofradia_telefono"
+                    style="@style/etiqueta"
+                    android:text="@string/detail_cofradia_telefono" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/texto_detalle"
+                    android:id="@+id/cofradia_telefono" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/layout_web"
+                android:layout_below="@+id/layout_telefono" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/label_cofradia_web"
+                    style="@style/etiqueta"
+                    android:text="@string/detail_cofradia_web" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/texto_detalle"
+                    android:id="@+id/cofradia_web" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

@@ -21,7 +21,11 @@
     <string name="detail_cofradia_sede">Sede:&#x200A;</string>
     <string name="detail_cofradia_numero_procesiones">Número de Procesiones:&#x200A;</string>
     <string name="detail_cofradia_hermano_abad">Hermano Abad:&#x200A;</string>
-    <string name="titulo_procesiones_view">PROCESIONES</string>
+    <string name="detail_titulo_procesiones_view">PROCESIONES</string>
+    <string name="detail_titulo_contacto">CONTACTO</string>
+    <string name="detail_cofradia_direccion">Dirección:&#x200A;</string>
+    <string name="detail_cofradia_telefono">Teléfono:&#x200A;</string>
+    <string name="detail_cofradia_web">Web:&#x200A;</string>
 
     <!-- Etiquetas detalle Procesion -->
     <string name="detail_procesion_nombre">Procesión:&#x200A;</string>
@@ -47,5 +51,7 @@
 
     <string name="action_share">Compartir</string>
     <string name="action_settings">Settings</string>
+
+
 
 </resources>

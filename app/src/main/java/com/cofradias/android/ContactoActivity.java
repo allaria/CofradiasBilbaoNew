@@ -1,6 +1,5 @@
 package com.cofradias.android;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,60 +8,74 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.cofradias.android.model.adapter.PasoAdapter;
+import com.cofradias.android.model.adapter.ContactoAdapter;
 import com.cofradias.android.model.help.Constants;
 import com.cofradias.android.model.object.Cofradia;
-import com.cofradias.android.model.object.Paso;
+import com.cofradias.android.model.object.Contacto;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
 /**
  * Created by alaria on 17/05/2016.
  */
-public class PasoActivity extends AppCompatActivity implements PasoAdapter.PasoClickListener{
+public class ContactoActivity extends AppCompatActivity implements ContactoAdapter.ContactoClickListener{
 
-    private static final String LOG_TAG = PasoActivity.class.getSimpleName();
+    private static final String LOG_TAG = ContactoActivity.class.getSimpleName();
     private ProgressBar spinner;
     private RecyclerView mRecyclerView;
-    private PasoAdapter mPasoAdapter;
-    private Paso selectedPaso;
+    private ContactoAdapter mContactoAdapter;
+    private Contacto selectedContacto;
     private Cofradia cofradia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.paso_activity);
+        setContentView(R.layout.contacto_activity);
 
-        spinner = (ProgressBar)findViewById(R.id.paso_progress_bar);
+        spinner = (ProgressBar)findViewById(R.id.contacto_progress_bar);
         spinner.setVisibility(View.VISIBLE);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView_paso);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView_contacto);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         //mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
-        mPasoAdapter = new PasoAdapter(this);
-        mRecyclerView.setAdapter(mPasoAdapter);
+        mContactoAdapter = new ContactoAdapter(this);
+        mRecyclerView.setAdapter(mContactoAdapter);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_paso);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_contacto);
         toolbar.setLogo(R.drawable.logo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PASOS);
+        Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_COFRADIAS);
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    mPasoAdapter.addPaso(dataSnapshot.getValue(Paso.class));
-                    mPasoAdapter.notifyDataSetChanged();
+                    //Por cada Cofradia recuperamos los datos para crear el nuevo objeto Contacto
+                    cofradia = dataSnapshot.getValue(Cofradia.class);
+
+                    String nombreCofradia = cofradia.getNombreCofradia();
+                    String sede = cofradia.getSede();
+                    String direccion = cofradia.getDireccion();
+                    String email = cofradia.getEmail();
+                    String escudoCofradia = cofradia.getImagenEscudo();
+                    String telefono = cofradia.getTelefono();
+                    String web = cofradia.getWeb();
+
+
+                    //Creamos el nuevo objeto Contacto
+                    Contacto contacto = new Contacto(nombreCofradia, sede, direccion, email, escudoCofradia, telefono, web);
+
+                    mContactoAdapter.addContacto(contacto);
+                    mContactoAdapter.notifyDataSetChanged();
                 }
 
                 spinner.setVisibility(View.GONE);
@@ -76,12 +89,12 @@ public class PasoActivity extends AppCompatActivity implements PasoAdapter.PasoC
 
 
     @Override
-    public void onClickPaso(int position) {
+    public void onClickContacto(int position) {
 
-        selectedPaso = mPasoAdapter.getSelectedPaso(position);
+/*        selectedContacto = mContactoAdapter.getSelectedContacto(position);
 
         Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_COFRADIAS);
-        Query queryRef = myFirebaseRef.orderByChild("id_cofradia").equalTo(selectedPaso.getId_cofradia());
+        Query queryRef = myFirebaseRef.orderByChild("id_cofradia").equalTo(selectedContacto.getId_cofradia());
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -92,8 +105,8 @@ public class PasoActivity extends AppCompatActivity implements PasoAdapter.PasoC
                 }
 
                 Intent intent = new Intent(getApplicationContext(), DetailMostrarImagenActivity.class);
-                intent.putExtra(Constants.REFERENCE.PASO, selectedPaso);
-                intent.putExtra(Constants.REFERENCE.ORIGEN, "PasoActivity");
+                intent.putExtra(Constants.REFERENCE.PASO, selectedContacto);
+                intent.putExtra(Constants.REFERENCE.ORIGEN, "ContactoActivity");
                 intent.putExtra(Constants.REFERENCE.COFRADIA, cofradia);
                 startActivity(intent);
             }
@@ -101,7 +114,7 @@ public class PasoActivity extends AppCompatActivity implements PasoAdapter.PasoC
             @Override
             public void onCancelled(FirebaseError error) {
             }
-        });
+        });*/
 
 
     }
