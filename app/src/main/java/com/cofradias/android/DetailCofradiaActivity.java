@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.squareup.picasso.Picasso;
  */
 public class DetailCofradiaActivity extends AppCompatActivity implements DetailCofradiaFragment.InterfaceDetailCofradia {
 
+    private static final String LOG_TAG = DetailCofradiaActivity.class.getSimpleName();
     private Toolbar toolbar;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -80,6 +82,23 @@ public class DetailCofradiaActivity extends AppCompatActivity implements DetailC
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id==android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finish();
+    }
 
     @Override
     public void onClick(int position, ProcesionAdapter mProcesionAdapter) {
