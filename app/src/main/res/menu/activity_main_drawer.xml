@@ -21,6 +21,11 @@
             android:title="@string/menu_pasos" />
 
         <item
+            android:id="@+id/nav_procesiones"
+            android:icon="@drawable/ic_menu_procesiones"
+            android:title="@string/menu_procesiones" />
+
+        <item
             android:id="@+id/nav_contacto"
             android:icon="@drawable/ic_menu_contacto"
             android:title="@string/menu_contacto" />

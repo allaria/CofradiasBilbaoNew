@@ -23,7 +23,7 @@ import com.firebase.client.ValueEventListener;
 /**
  * Created by alaria on 17/05/2016.
  */
-public class PasoActivity extends AppCompatActivity implements PasoAdapter.PasoClickListener{
+public class PasoActivity extends AppCompatActivity implements PasoAdapter.PasoClickListener {
 
     private static final String LOG_TAG = PasoActivity.class.getSimpleName();
     private ProgressBar spinner;

@@ -47,14 +47,13 @@
     <string name="menu_pasos">Galería de Pasos</string>
     <string name="menu_contacto">Contactos</string>
     <string name="menu_museo">Museo de Pasos</string>
+    <string name="menu_procesiones">Procesiones</string>
     <string name="menu_configuracion">Configuración</string>
-    <string name="menu_santa_biblia">Santa Biblia</string>
 
     <string name="action_share">Compartir</string>
     <string name="action_settings">Settings</string>
 
     <string name="permiso_gps_ok">Permiso concedido.</string>
     <string name="permiso_gps_ko">Sin este permiso no es posible establecer la ubicación.</string>
-
 
 </resources>
