@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.main_activity);
 
         spinner = (ProgressBar)findViewById(R.id.main_progress_bar);

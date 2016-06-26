@@ -10,7 +10,17 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
     }
+
+    dexOptions
+            {
+                incremental false
+                javaMaxHeapSize "2048M"
+                preDexLibraries = false
+            }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,11 +38,12 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.android.support:cardview-v7:23.3.0'
 
-    //compile 'com.google.android.gms:play-services:8.4.0'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
-    compile 'com.google.android.gms:play-services-maps:8.4.0'
-    compile 'com.google.android.gms:play-services-identity:8.4.0'
+    compile 'com.google.android.gms:play-services:9.0.2'
+    //compile 'com.google.android.gms:play-services-ads:8.4.0'
+    //compile 'com.google.android.gms:play-services-maps:8.4.0'
+    //compile 'com.google.android.gms:play-services-identity:8.4.0'
 
+    compile 'com.android.support:multidex:1.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.firebase:firebase-client-android:2.3.1'
 }

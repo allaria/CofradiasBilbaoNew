@@ -1,15 +1,29 @@
 package com.cofradias.android.view;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cofradias.android.R;
 import com.cofradias.android.model.object.Coordenada;
 import com.cofradias.android.model.object.Procesion;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -23,24 +37,48 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailMapsFragment extends Fragment implements OnMapReadyCallback {
+public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     private final String LOG_TAG = DetailMapsFragment.class.getSimpleName();
 
-    public Procesion procesion;
-    MapView mMapView;
-    GoogleMap mGoogleMap;
+    private Procesion procesion;
+    private View view;
+    private MapView mMapView;
+    private GoogleMap mGoogleMap;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
 
+    static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         procesion = (Procesion) getArguments().getSerializable("PROCESION_KEY");
 
-        View view = inflater.inflate(R.layout.detail_procesion_maps_content, container, false);
+        view = inflater.inflate(R.layout.detail_procesion_maps_content, container, false);
         mMapView = (MapView) view.findViewById(R.id.map_view);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floation_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                getMyLocation();
+            }
+        });
 
         return view;
     }
@@ -51,14 +89,13 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback {
 
         List<Coordenada> coordenadaList = procesion.getCoordenadas();
         List<LatLng> coordenadasMapa = new ArrayList<LatLng>();
-        for (int i=0; i< coordenadaList.size(); i++){
+        for (int i = 0; i < coordenadaList.size(); i++) {
             Coordenada coordenada = coordenadaList.get(i);
 
             //Log.v("Longitud - Latitud", coordenada.getLongitud() + " - " + coordenada.getLatitud());
-
             coordenadasMapa.add(new LatLng(
-                    coordenada.getLongitud(),
-                    coordenada.getLatitud())
+                            coordenada.getLongitud(),
+                            coordenada.getLatitud())
                     //Double.parseDouble(coordenada.getLongitud()),
                     //Double.parseDouble(coordenada.getLatitud()))
             );
@@ -67,10 +104,34 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback {
         LatLng inicioProcesion = coordenadasMapa.get(0);
         mGoogleMap.setMapType(4);
         Marker miMarker = mGoogleMap.addMarker(new MarkerOptions()
-                        .position(inicioProcesion)
-                        .title(procesion.getNombreProcesion())
+                .position(inicioProcesion)
+                .title(procesion.getNombreProcesion())
         );
         miMarker.showInfoWindow();
+
+        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+            return;
+        } else {
+
+            int off = 0;
+            try {
+                off = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.LOCATION_MODE);
+                if (off == 0) {
+                    Intent onGPS = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(onGPS);
+                }
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        mGoogleMap.setMyLocationEnabled(true);
 
         float mxZoom = mGoogleMap.getMaxZoomLevel();
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(inicioProcesion, 16.0f));
@@ -79,7 +140,6 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback {
                 .addAll(coordenadasMapa)
                 .color(Color.RED)
         );
-
     }
 
     @Override
@@ -104,5 +164,85 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getContext(), R.string.permiso_gps_ok, Toast.LENGTH_LONG).show();
+
+                    int off = 0;
+                    try {
+                        off = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.LOCATION_MODE);
+                        if (off == 0) {
+                            Intent onGPS = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(onGPS);
+                        }
+                    } catch (Settings.SettingNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    Log.v(LOG_TAG,"Llamada de nuevo a la generación del mapa.");
+                    onMapReady(mGoogleMap);
+                } else {
+                    Toast.makeText(getContext(), R.string.permiso_gps_ko, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+    private void getMyLocation() {
+        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+            return;
+        } else {
+
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            if (mLastLocation != null) {
+                Toast.makeText(getContext(), String.valueOf(mLastLocation.getLatitude()) + "\n"
+                        + String.valueOf(mLastLocation.getLongitude()), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getContext(), "mLastLocation == null", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @Override
+    public void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        getMyLocation();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        Toast.makeText(getContext(), "Conexión suspendida: " + String.valueOf(i), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(getContext(), "Error de conexión: \n" + connectionResult.toString(), Toast.LENGTH_LONG).show();
     }
 }
