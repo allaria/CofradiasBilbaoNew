@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -34,7 +33,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -44,17 +42,18 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
+public class COPY_DetailMapsFragment extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-    private final String LOG_TAG = DetailMapsFragment.class.getSimpleName();
+    private final String LOG_TAG = COPY_DetailMapsFragment.class.getSimpleName();
 
     private Procesion procesion;
     private View view;
     private MapView mMapView;
     private GoogleMap mGoogleMap;
     private GoogleApiClient mGoogleApiClient;
+    String origen;
     private Location mLastLocation;
 
     static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -81,8 +80,8 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
                 getMyLocation("onCreateView");
             }
         });
@@ -94,7 +93,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
 
-/*        List<Coordenada> coordenadaList = procesion.getCoordenadas();
+        List<Coordenada> coordenadaList = procesion.getCoordenadas();
         List<LatLng> coordenadasMapa = new ArrayList<LatLng>();
         for (int i = 0; i < coordenadaList.size(); i++) {
             Coordenada coordenada = coordenadaList.get(i);
@@ -114,89 +113,23 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                 .position(inicioProcesion)
                 .title(procesion.getNombreProcesion())
         );
-        myMarkerStart.showInfoWindow();*/
+        myMarkerStart.showInfoWindow();
 
-        Log.v(LOG_TAG,"***" + Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES + "/" + procesion.getId_procesion());
-        Firebase myFirebaseRef1 = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES + "/" + procesion.getId_procesion());
+        Firebase myFirebaseRef1 = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES + "/001-PRO");
+        Log.v(LOG_TAG,Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES + "/001-PRO");
+        //Query queryRef = myFirebaseRef1.orderByChild("id_cofradia").equalTo(selectedPaso.getId_cofradia());
+        //Firebase myProcesion1 = myFirebaseRef1.child("001-PRO");
         myFirebaseRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
-                List<Coordenada> coordenadaList = procesion.getCoordenadas();
-                List<LatLng> coordenadasMapa = new ArrayList<LatLng>();
-                for (int i = 0; i < coordenadaList.size(); i++) {
-                    Coordenada coordenada = coordenadaList.get(i);
-
-                    //Log.v("Longitud - Latitud", coordenada.getLongitud() + " - " + coordenada.getLatitud());
-                    coordenadasMapa.add(new LatLng(
-                                    coordenada.getLongitud(),
-                                    coordenada.getLatitud())
-                            //Double.parseDouble(coordenada.getLongitud()),
-                            //Double.parseDouble(coordenada.getLatitud()))
-                    );
-                }
-
-
-                //Marcador de inicio de procesión
-                LatLng inicioProcesion = coordenadasMapa.get(0);
-                mGoogleMap.setMapType(4);
-                Marker myMarkerStart = mGoogleMap.addMarker(new MarkerOptions()
-                        .position(inicioProcesion)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_menu_procesiones))
-                        .title(procesion.getNombreProcesion())
-                );
-                myMarkerStart.showInfoWindow();
-
-
-                //Marcador de posición de la cofradía
                 String mLongitud = (String) snapshot.child("longitudActual").getValue();
                 String mLatitud = (String) snapshot.child("latitudActual").getValue();
 
-                Log.v(LOG_TAG,"***" + mLongitud + "-" + mLatitud + "-");
-                if((mLongitud!=null && mLongitud!="") && (mLatitud!=null && mLatitud!=""))  {
+                Log.v(LOG_TAG,mLongitud + " - " + mLatitud);
 
-                    Log.v(LOG_TAG,"***onDataChange - if");
-                    LatLng ubicacioProcesion = new LatLng(Double.parseDouble("43.263217"), Double.parseDouble("-2.923892"));
-                    //LatLng ubicacioProcesion = new LatLng(Double.parseDouble(mLongitud),Double.parseDouble(mLatitud));
-                    Marker myMarkerProcesion = mGoogleMap.addMarker(new MarkerOptions()
-                            .position(ubicacioProcesion)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_position_paso))
-                    );
-                }else{
-                    Log.v(LOG_TAG,"***onDataChange - else");
-                }
-
-
-                if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-
-                    requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                            MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
-                    return;
-                } else {
-
-                    int off = 0;
-                    try {
-                        off = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.LOCATION_MODE);
-                        if (off == 0) {
-                            Intent onGPS = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(onGPS);
-                        }
-                    } catch (Settings.SettingNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mGoogleMap.setMyLocationEnabled(true);
-
-                float mxZoom = mGoogleMap.getMaxZoomLevel();
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(inicioProcesion, 17.0f));
-
-                Polyline polyline = mGoogleMap.addPolyline(new PolylineOptions()
-                        .addAll(coordenadasMapa)
-                        .color(Color.RED)
+                LatLng ubicacioProcesion = new LatLng(Double.parseDouble(mLongitud),Double.parseDouble(mLatitud));
+                Marker myMarkerProcesion = mGoogleMap.addMarker(new MarkerOptions()
+                        .position(ubicacioProcesion)
                 );
             }
 
@@ -206,7 +139,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
 
         });
 
-/*        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -236,7 +169,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
         Polyline polyline = mGoogleMap.addPolyline(new PolylineOptions()
                 .addAll(coordenadasMapa)
                 .color(Color.RED)
-        );*/
+        );
     }
 
     @Override
@@ -306,28 +239,26 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
             return;
         } else {
 
-            Log.v(LOG_TAG,"***ORIGEN:"+origen);
             if(origen=="onCreateView"){
-                Log.v(LOG_TAG,"***getMyLocation - IF");
                 mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 if (mLastLocation != null) {
 
-                    Log.v(LOG_TAG,"***mLastLocation distinto a null");
+                    Log.v(LOG_TAG,"mLastLocation distinto a null");
                     Toast.makeText(getContext(), String.valueOf(mLastLocation.getLatitude()) + "\n"
                             + String.valueOf(mLastLocation.getLongitude()), Toast.LENGTH_LONG).show();
 
                     Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES);
-                    Firebase myProcesion = myFirebaseRef.child(procesion.getId_procesion());
+                    Firebase myProcesion = myFirebaseRef.child("001-PRO");
                     myProcesion.child("latitudActual").setValue(String.valueOf(mLastLocation.getLatitude()));
                     myProcesion.child("longitudActual").setValue(String.valueOf(mLastLocation.getLongitude()));
 
+
+
                 } else {
 
-                    Log.v(LOG_TAG,"***mLastLocation igual a null");
+                    Log.v(LOG_TAG,"mLastLocation igual a null");
                     Toast.makeText(getContext(), "mLastLocation == null", Toast.LENGTH_LONG).show();
                 }
-            }else{
-                Log.v(LOG_TAG,"***getMyLocation - ELSE");
             }
         }
     }
@@ -335,20 +266,20 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onStart() {
         mGoogleApiClient.connect();
-        Log.v(LOG_TAG,"***connect");
+        Log.v(LOG_TAG,"connect");
         super.onStart();
     }
 
     @Override
     public void onStop() {
         mGoogleApiClient.disconnect();
-        Log.v(LOG_TAG,"***disconnect");
+        Log.v(LOG_TAG,"disconnect");
         super.onStop();
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        getMyLocation("***onConnected");
+        getMyLocation("onConnected");
     }
 
     @Override

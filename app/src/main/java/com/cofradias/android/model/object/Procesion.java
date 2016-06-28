@@ -11,8 +11,8 @@ public class Procesion implements Serializable {
 
     private List<Coordenada> coordenadas;
     private List<Ruta> ruta;
-    private String dia, fecha, horario, id_cofradia, imagenProcesion, nombreProcesion, pasos, salida, textoIntroProcesion;
-
+    private String dia, fecha, horario, id_cofradia, id_procesion, imagenProcesion, nombreProcesion, pasos, salida, textoIntroProcesion;
+    private Double latitudActual, longitudActual;
 
     public List<Coordenada> getCoordenadas() {
         return coordenadas;
@@ -62,6 +62,14 @@ public class Procesion implements Serializable {
         this.id_cofradia = id_cofradia;
     }
 
+    public String getId_procesion() {
+        return id_procesion;
+    }
+
+    public void setId_procesion(String id_procesion) {
+        this.id_procesion = id_procesion;
+    }
+
     public String getImagenProcesion() {
         return imagenProcesion;
     }
@@ -102,6 +110,21 @@ public class Procesion implements Serializable {
         this.textoIntroProcesion = textoIntroProcesion;
     }
 
+    public Double getLatitudActual() {
+        return latitudActual;
+    }
+
+    public void setLatitudActual(Double latitudActual) {
+        this.latitudActual = latitudActual;
+    }
+
+    public Double getLongitudActual() {
+        return longitudActual;
+    }
+
+    public void setLongitudActual(Double longitudActual) {
+        this.longitudActual = longitudActual;
+    }
 
     public Procesion() {
         this.coordenadas = new ArrayList<Coordenada>();
