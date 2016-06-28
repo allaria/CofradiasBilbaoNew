@@ -12,8 +12,9 @@
     <string name="tab_detail_four">Galería</string>
 
     <string name="tab_maps_one">Detalle</string>
-    <string name="tab_maps_two">Indicaciones</string>
-    <string name="tab_maps_three">Mapa</string>
+    <string name="tab_maps_two">Pasos</string>
+    <string name="tab_maps_three">Ruta</string>
+    <string name="tab_maps_four">Mapa</string>
 
     <!-- Etiquetas detalle Cofradía -->
     <string name="detail_cofradia_vestimenta">Vestimenta:&#x200A;</string>
@@ -35,6 +36,7 @@
     <string name="detail_procesion_inicio">Lugar de inicio:&#x200A;</string>
     <string name="detail_procesion_pasos">Pasos:&#x200A;</string>
 
+
     <string name="imagen_galeria">Imagen Galería</string>
     <string name="imagen_detail_procesion">Imagen Procesión</string>
     <string name="imagen_cofradia">Imagen Cofradía</string>
@@ -55,5 +57,6 @@
 
     <string name="permiso_gps_ok">Permiso concedido.</string>
     <string name="permiso_gps_ko">Sin este permiso no es posible establecer la ubicación.</string>
+
 
 </resources>

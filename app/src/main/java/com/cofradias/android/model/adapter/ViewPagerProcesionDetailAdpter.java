@@ -20,7 +20,7 @@ public class ViewPagerProcesionDetailAdpter extends FragmentPagerAdapter {
     public Context context;
     public Procesion procesion;
 
-    private String tab1, tab2, tab3;
+    private String tab1, tab2, tab3, tab4;
     private String[] tabtitlearray = new String[3];
 
     public ViewPagerProcesionDetailAdpter(FragmentManager manager, Context context, Procesion procesion){
@@ -30,8 +30,8 @@ public class ViewPagerProcesionDetailAdpter extends FragmentPagerAdapter {
         this.procesion = procesion;
 
         tab1 = context.getString(R.string.tab_maps_one);
-        tab2 = context.getString(R.string.tab_maps_two);
-        tab3 = context.getString(R.string.tab_maps_three);
+        tab2 = context.getString(R.string.tab_maps_three);
+        tab3 = context.getString(R.string.tab_maps_four);
 
         tabtitlearray[0]=tab1;
         tabtitlearray[1]=tab2;
@@ -51,6 +51,7 @@ public class ViewPagerProcesionDetailAdpter extends FragmentPagerAdapter {
                 detailProcesionFragment.setArguments(args);
                 return detailProcesionFragment;
             }
+
             case 1: {
                 DetailIndicacionesFragment detailIndicacionesFragment = new DetailIndicacionesFragment();
                 Bundle args = new Bundle();
@@ -58,6 +59,7 @@ public class ViewPagerProcesionDetailAdpter extends FragmentPagerAdapter {
                 detailIndicacionesFragment.setArguments(args);
                 return detailIndicacionesFragment;
             }
+
             case 2: {
                 DetailMapsFragment detailMapsFragment = new DetailMapsFragment();
                 Bundle args = new Bundle();

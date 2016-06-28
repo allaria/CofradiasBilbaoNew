@@ -54,6 +54,7 @@ public class DetailMostrarImagenActivity extends AppCompatActivity {
             }
 
             case "DetailPasoFragment":
+            case "DetailProcesionPasosFragment":
             case "PasoActivity":
             {
                 Paso paso = (Paso) intent.getSerializableExtra(Constants.REFERENCE.PASO);
