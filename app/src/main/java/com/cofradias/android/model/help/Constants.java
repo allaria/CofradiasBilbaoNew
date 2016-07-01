@@ -15,6 +15,7 @@ public class Constants {
         public static final String PASO = Config.PACKAGE_NAME + "paso";
         public static final String IMAGENGALERIA = Config.PACKAGE_NAME + "galeria";
         public static final String ORIGEN = Config.PACKAGE_NAME + "origen";
+        public static final String MENU = Config.PACKAGE_NAME + "menu";
     }
 
     public static final class Config {
@@ -32,5 +33,6 @@ public class Constants {
         public static final String FIREBASE_CHILD_PROCESIONES = "procesiones";
         public static final String FIREBASE_CHILD_GALERIA = "galeria";
         public static final String FIREBASE_CHILD_EVENTOS = "eventos";
+        public static final String FIREBASE_CHILD_USUARIOS = "usuarios";
     }
 }

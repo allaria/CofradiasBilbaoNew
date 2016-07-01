@@ -41,9 +41,9 @@
             android:title="@string/menu_museo" />
 
         <item
-            android:id="@+id/nav_configuracion"
-            android:icon="@drawable/ic_menu_config"
-            android:title="@string/menu_configuracion" />
+            android:id="@+id/nav_login_usuario"
+            android:icon="@drawable/ic__menu_user"
+            android:title="@string/menu_login_usuarios" />
     </group>
 
 </menu>

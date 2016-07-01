@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:orientation="vertical"
-        android:background="@drawable/ic_backgroud_contacto">
+        android:background="@drawable/ic_background_contacto">
 
     <LinearLayout
         android:layout_width="wrap_content"

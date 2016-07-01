@@ -50,7 +50,7 @@
     <string name="menu_contacto">Contactos</string>
     <string name="menu_museo">Museo de Pasos</string>
     <string name="menu_procesiones">Procesiones</string>
-    <string name="menu_configuracion">Configuración</string>
+    <string name="menu_login_usuarios">Usuarios</string>
 
     <string name="action_share">Compartir</string>
     <string name="action_settings">Settings</string>
@@ -58,5 +58,12 @@
     <string name="permiso_gps_ok">Permiso concedido.</string>
     <string name="permiso_gps_ko">Sin este permiso no es posible establecer la ubicación.</string>
 
+    <!-- Etiquetas pantalla autentificación -->
+    <string name="boton_aceptar">\t\t\t\t\t\tACEPTAR</string>
+    <string name="boton_salir">\t\t\t\t\tSALIR</string>
+    <string name="login_message_ok">Usuario y contraseña correctos.</string>
+    <string name="login_message_ko_1">Usuario y contrasea incorrectos. Dispone de</string>
+    <string name="login_message_ko_2">intentos más para identificarse correctamente.</string>
+    <string name="login_message_salir">Desconexión realizada con éxito.</string>
 
 </resources>

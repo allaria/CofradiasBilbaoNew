@@ -45,15 +45,9 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        final CollapsingToolbarLayout collapsingToolbar =
-//                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-//        collapsingToolbar.setCollapsedTitleTextColor(65);
-                //initCollapsingToolbar();
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //drawer.setDrawerListener(toggle);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -95,37 +89,6 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
                 .into((ImageView) findViewById(R.id.home_photo));
     }
 
-    /**
-     * Initializing collapsing toolbar
-     * Will show and hide the toolbar title on scroll
-     */
-/*    private void initCollapsingToolbar() {
-        final CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-        appBarLayout.setExpanded(true);
-
-        // hiding & showing the title when toolbar expanded & collapsed
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle(getString(R.string.app_name));
-                    isShow = true;
-                } else if (isShow) {
-                    collapsingToolbar.setTitle(" ");
-                    isShow = false;
-                }
-            }
-        });
-    }*/
 
     @Override
     public void onClick(int position) {
@@ -134,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
         intent.putExtra(Constants.REFERENCE.COFRADIA, selectedCofradia);
         startActivity(intent);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -144,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
             super.onBackPressed();
         }
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -175,12 +140,15 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
             Intent intentMenu = new Intent(MainActivity.this, ProcesionActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
-        } else if (id == R.id.nav_configuracion) {
-
+        } else if (id == R.id.nav_login_usuario) {
+            Intent intentMenu = new Intent(MainActivity.this, LoginActivity.class);
+            intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentMenu);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 }
