@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.cofradias.android.R;
@@ -25,6 +26,7 @@ import com.firebase.client.ValueEventListener;
 
 public class DetailCofradiaFragment extends Fragment implements ProcesionAdapter.ProcesionClickListener {
 
+    private ProgressBar spinner;
     private Cofradia cofradia;
     private RecyclerView mRecyclerView;
     private ProcesionAdapter mProcesionAdapter;
@@ -44,6 +46,9 @@ public class DetailCofradiaFragment extends Fragment implements ProcesionAdapter
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         contentView = inflater.inflate(R.layout.detail_cofradia_content,container, false);
+
+        spinner = (ProgressBar)contentView.findViewById(R.id.cofradia_detail_progress_bar);
+        spinner.setVisibility(View.VISIBLE);
 
 //        mNombreCofradia = (TextView) contentView.findViewById(R.id.cofradia_name);
 //        mNombreCofradia.setText(cofradia.getNombreCofradia());
@@ -94,6 +99,8 @@ public class DetailCofradiaFragment extends Fragment implements ProcesionAdapter
                     mProcesionAdapter.addProcesion(dataSnapshot.getValue(Procesion.class));
                     mProcesionAdapter.notifyDataSetChanged();
                 }
+
+                spinner.setVisibility(View.GONE);
             }
 
             @Override

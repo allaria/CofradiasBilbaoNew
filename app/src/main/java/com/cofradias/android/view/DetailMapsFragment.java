@@ -1,10 +1,12 @@
 package com.cofradias.android.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -56,6 +58,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
     private GoogleMap mGoogleMap;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
+    SharedPreferences preferences;
 
     static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
@@ -86,6 +89,12 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                 getMyLocation("onCreateView");
             }
         });
+
+        // Ocultamos el boton de posicionar el paso si no eres admin o cofrade
+        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if(preferences.getString("tipoUsuarioValidado", "").equals("")){
+            fab.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }

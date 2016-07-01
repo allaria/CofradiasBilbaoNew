@@ -120,11 +120,28 @@
             android:text="@string/detail_titulo_procesiones_view"
             style="@style/title_black" />
 
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+        <ProgressBar
+            android:id="@+id/cofradia_detail_progress_bar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:layout_below="@+id/cofradia_detail_progress_bar" />
+        </RelativeLayout>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
