@@ -90,7 +90,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
             }
         });
 
-        // Ocultamos el boton de posicionar el paso si no eres admin o cofrade
+        // Ocultamos el botón de posicionar el paso si no eres admin o cofrade
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         if(preferences.getString("tipoUsuarioValidado", "").equals("")){
             fab.setVisibility(View.INVISIBLE);
@@ -102,28 +102,6 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
-
-/*        List<Coordenada> coordenadaList = procesion.getCoordenadas();
-        List<LatLng> coordenadasMapa = new ArrayList<LatLng>();
-        for (int i = 0; i < coordenadaList.size(); i++) {
-            Coordenada coordenada = coordenadaList.get(i);
-
-            //Log.v("Longitud - Latitud", coordenada.getLongitud() + " - " + coordenada.getLatitud());
-            coordenadasMapa.add(new LatLng(
-                            coordenada.getLongitud(),
-                            coordenada.getLatitud())
-                    //Double.parseDouble(coordenada.getLongitud()),
-                    //Double.parseDouble(coordenada.getLatitud()))
-            );
-        }
-
-        LatLng inicioProcesion = coordenadasMapa.get(0);
-        mGoogleMap.setMapType(4);
-        Marker myMarkerStart = mGoogleMap.addMarker(new MarkerOptions()
-                .position(inicioProcesion)
-                .title(procesion.getNombreProcesion())
-        );
-        myMarkerStart.showInfoWindow();*/
 
         Log.v(LOG_TAG,"***" + Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES + "/" + procesion.getId_procesion());
         Firebase myFirebaseRef1 = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES + "/" + procesion.getId_procesion());
@@ -165,8 +143,8 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                 if((mLongitud!=null && mLongitud!="") && (mLatitud!=null && mLatitud!=""))  {
 
                     Log.v(LOG_TAG,"***onDataChange - if");
-                    LatLng ubicacioProcesion = new LatLng(Double.parseDouble("43.263217"), Double.parseDouble("-2.923892"));
-                    //LatLng ubicacioProcesion = new LatLng(Double.parseDouble(mLongitud),Double.parseDouble(mLatitud));
+                    //LatLng ubicacioProcesion = new LatLng(Double.parseDouble("43.263217"), Double.parseDouble("-2.923892"));
+                    LatLng ubicacioProcesion = new LatLng(Double.parseDouble(mLongitud),Double.parseDouble(mLatitud));
                     Marker myMarkerProcesion = mGoogleMap.addMarker(new MarkerOptions()
                             .position(ubicacioProcesion)
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_position_paso))
@@ -198,7 +176,16 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                         e.printStackTrace();
                     }
                 }
-                mGoogleMap.setMyLocationEnabled(true);
+
+                //Como Google Maps no deja cambiar el punto azul de la geolocalización al cofrade únicamente le mostramos su posición
+                //Al resto de usuarios les mostramos la posición de Google Maps para que se sitúen mejor
+                preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                if(preferences.getString("tipoUsuarioValidado", "").equals("")){
+                    mGoogleMap.setMyLocationEnabled(true);
+                } else {
+                    mGoogleMap.setMyLocationEnabled(true);
+                    //getMyLocation("onCreateView");
+                }
 
                 float mxZoom = mGoogleMap.getMaxZoomLevel();
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(inicioProcesion, 17.0f));
@@ -214,38 +201,6 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
             }
 
         });
-
-/*        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
-            return;
-        } else {
-
-            int off = 0;
-            try {
-                off = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.LOCATION_MODE);
-                if (off == 0) {
-                    Intent onGPS = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(onGPS);
-                }
-            } catch (Settings.SettingNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        mGoogleMap.setMyLocationEnabled(true);
-
-        float mxZoom = mGoogleMap.getMaxZoomLevel();
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(inicioProcesion, 16.0f));
-
-        Polyline polyline = mGoogleMap.addPolyline(new PolylineOptions()
-                .addAll(coordenadasMapa)
-                .color(Color.RED)
-        );*/
     }
 
     @Override

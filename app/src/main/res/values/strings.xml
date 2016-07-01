@@ -1,16 +1,29 @@
 <resources>
     <string name="app_name">&#x200A;&#x200A;Mr. Cofrade</string>
-    <string name="title_activity_maps">&#x200A;&#x200A;Mr. Cofrade</string>
 
+    <!-- Elementos del menu de la aplicación -->
     <string name="app_navigation_view_name">Cofradías de Bilbao</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="menu_calendario_eventos">Calendario de Eventos</string>
+    <string name="menu_galeria">Galería de Imágenes</string>
+    <string name="menu_pasos">Galería de Pasos</string>
+    <string name="menu_contacto">Contactos</string>
+    <string name="menu_museo">Museo de Pasos</string>
+    <string name="menu_procesiones">Procesiones</string>
+    <string name="menu_login_usuarios">Usuarios</string>
+
+    <string name="action_share">Compartir</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Nombre pestañas cofradias -->
     <string name="tab_detail_one">Cofradía</string>
     <string name="tab_detail_two">Detalle</string>
     <string name="tab_detail_three">Pasos</string>
     <string name="tab_detail_four">Galería</string>
 
+    <!-- Nombre pestañas procesiones -->
     <string name="tab_maps_one">Detalle</string>
     <string name="tab_maps_two">Pasos</string>
     <string name="tab_maps_three">Ruta</string>
@@ -36,34 +49,30 @@
     <string name="detail_procesion_inicio">Lugar de inicio:&#x200A;</string>
     <string name="detail_procesion_pasos">Pasos:&#x200A;</string>
 
-
-    <string name="imagen_galeria">Imagen Galería</string>
-    <string name="imagen_detail_procesion">Imagen Procesión</string>
-    <string name="imagen_cofradia">Imagen Cofradía</string>
-    <string name="escudo_cofradia">Escudo Cofradía</string>
-    <string name="imagen_evento">Imagen Evento</string>
-    <string name="imagen_indicacion">Imagen Indicación</string>
-
-    <string name="menu_calendario_eventos">Calendario de Eventos</string>
-    <string name="menu_galeria">Galería de Imágenes</string>
-    <string name="menu_pasos">Galería de Pasos</string>
-    <string name="menu_contacto">Contactos</string>
-    <string name="menu_museo">Museo de Pasos</string>
-    <string name="menu_procesiones">Procesiones</string>
-    <string name="menu_login_usuarios">Usuarios</string>
-
-    <string name="action_share">Compartir</string>
-    <string name="action_settings">Settings</string>
-
+    <!-- Etiquetas fragmento mapas -->
+    <string name="title_activity_maps">&#x200A;&#x200A;Mr. Cofrade</string>
     <string name="permiso_gps_ok">Permiso concedido.</string>
     <string name="permiso_gps_ko">Sin este permiso no es posible establecer la ubicación.</string>
 
     <!-- Etiquetas pantalla autentificación -->
     <string name="boton_aceptar">\t\t\t\t\t\tACEPTAR</string>
     <string name="boton_salir">\t\t\t\t\tSALIR</string>
+    <string name="user_hint">Usuario</string>
+    <string name="password_hint">Contraseña</string>
     <string name="login_message_ok">Usuario y contraseña correctos.</string>
     <string name="login_message_ko_1">Usuario y contrasea incorrectos. Dispone de</string>
     <string name="login_message_ko_2">intentos más para identificarse correctamente.</string>
     <string name="login_message_salir">Desconexión realizada con éxito.</string>
+
+    <!-- Etiquetas descripciones de imagenes -->
+    <string name="imagen_logo">Mr. Cofrade Logo</string>
+    <string name="imagen_galeria">Imagen Galería</string>
+    <string name="imagen_detail_procesion">Imagen Procesión</string>
+    <string name="imagen_cofradia">Imagen Cofradía</string>
+    <string name="escudo_cofradia">Escudo Cofradía</string>
+    <string name="imagen_evento">Imagen Evento</string>
+    <string name="imagen_indicacion">Imagen Indicación</string>
+    <string name="imagen_back_arrow">Atrás</string>
+
 
 </resources>

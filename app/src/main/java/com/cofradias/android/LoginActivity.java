@@ -4,8 +4,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,21 +26,29 @@ import com.firebase.client.ValueEventListener;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    //private static final int REQUEST_SIGNUP = 0;
     private static final String LOG_TAG = LoginActivity.class.getSimpleName();
-    private MenuItem menuItem;
+    private Toolbar toolbar;
     private EditText mUser, mPassword;
     private TextView mLoggedUser;
     private String usuarioFB, userLogged, passwordLogged;
     private Button mButtonLogin, mButtonPreferences;
-    int REQUEST_SIGNUP = 5;
     SharedPreferences preferences;
+    private int REQUEST_SIGNUP = 5;
+    private final int DRAWABLE_LEFT = 0;
+    private final int DRAWABLE_TOP = 1;
+    private final int DRAWABLE_RIGHT = 2;
+    private final int DRAWABLE_BOTTOM = 3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.login_activity);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         // Initialize preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -66,6 +76,57 @@ public class LoginActivity extends AppCompatActivity {
                 //mLoggedUser.setText(preferences.getString("tipoUsuarioValidado", ""));
             }
         }
+
+        mUser.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    int leftEdgeOfRightDrawable = mUser.getRight()
+                            - mUser.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width();
+                    // when EditBox has padding, adjust leftEdge like
+                    // leftEdgeOfRightDrawable -= getResources().getDimension(R.dimen.edittext_padding_left_right);
+                    if (event.getRawX() >= leftEdgeOfRightDrawable) {
+                        // clicked on clear icon
+                        mUser.setText("");
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        mPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    int leftEdgeOfRightDrawable = mPassword.getRight()
+                            - mPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width();
+                    // when EditBox has padding, adjust leftEdge like
+                    // leftEdgeOfRightDrawable -= getResources().getDimension(R.dimen.edittext_padding_left_right);
+                    if (event.getRawX() >= leftEdgeOfRightDrawable) {
+                        // clicked on clear icon
+                        mPassword.setText("");
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        mPassword.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                    if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER) ||
+                            (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                        //do something
+                        //true because you handle the event
+                        mButtonLogin.performClick();
+                        return true;
+                    }
+                return false;
+            }
+        });
 
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -182,17 +243,18 @@ public class LoginActivity extends AppCompatActivity {
         mButtonLogin.setText(getResources().getString(R.string.boton_salir));
         mLoggedUser.setText(preferences.getString("tipoUsuarioValidado", ""));
 
-        //mUser.setFocusable(false);
         mUser.setVisibility(View.GONE);
-        //mUser.setEnabled(false);
         mPassword.setVisibility(View.GONE);
-        //mPassword.setFocusable(false);
-        //mPassword.setEnabled(false);
     }
 
     public void getPreferences(View v) {
 
         String tipoUsuario = preferences.getString("tipoUsuarioValidado", "n/a");
         Toast.makeText(this, tipoUsuario, Toast.LENGTH_SHORT).show();
+    }
+
+    public void Volver(View v) {
+
+        finish();
     }
 }
