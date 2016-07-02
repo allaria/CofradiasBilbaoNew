@@ -58,6 +58,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
     private GoogleMap mGoogleMap;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
+    private Marker myMarkerStart, myMarkerProcesion;
     SharedPreferences preferences;
 
     static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -80,8 +81,8 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                     .build();
         }
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floation_button);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fabPosicion = (FloatingActionButton) view.findViewById(R.id.floation_button_posicion);
+        fabPosicion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -90,10 +91,21 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
             }
         });
 
+        FloatingActionButton fabEliminarPosicion = (FloatingActionButton) view.findViewById(R.id.floation_button_eliminar_posicion);
+        fabEliminarPosicion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                deleteMapPoint();
+            }
+        });
+
         // Ocultamos el botón de posicionar el paso si no eres admin o cofrade
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         if(preferences.getString("tipoUsuarioValidado", "").equals("")){
-            fab.setVisibility(View.INVISIBLE);
+            fabPosicion.setVisibility(View.INVISIBLE);
+            fabEliminarPosicion.setVisibility(View.INVISIBLE);
         }
 
         return view;
@@ -127,7 +139,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                 //Marcador de inicio de procesión
                 LatLng inicioProcesion = coordenadasMapa.get(0);
                 mGoogleMap.setMapType(4);
-                Marker myMarkerStart = mGoogleMap.addMarker(new MarkerOptions()
+                myMarkerStart = mGoogleMap.addMarker(new MarkerOptions()
                         .position(inicioProcesion)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_menu_procesiones))
                         .title(procesion.getNombreProcesion())
@@ -142,15 +154,15 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                 Log.v(LOG_TAG,"***" + mLongitud + "-" + mLatitud + "-");
                 if((mLongitud!=null && mLongitud!="") && (mLatitud!=null && mLatitud!=""))  {
 
-                    Log.v(LOG_TAG,"***onDataChange - if");
+                    Log.v(LOG_TAG,"***onMapReady - onDataChange - if");
                     //LatLng ubicacioProcesion = new LatLng(Double.parseDouble("43.263217"), Double.parseDouble("-2.923892"));
-                    LatLng ubicacioProcesion = new LatLng(Double.parseDouble(mLongitud),Double.parseDouble(mLatitud));
-                    Marker myMarkerProcesion = mGoogleMap.addMarker(new MarkerOptions()
+                    LatLng ubicacioProcesion = new LatLng(Double.parseDouble(mLatitud),Double.parseDouble(mLongitud));
+                    myMarkerProcesion = mGoogleMap.addMarker(new MarkerOptions()
                             .position(ubicacioProcesion)
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_position_paso))
                     );
                 }else{
-                    Log.v(LOG_TAG,"***onDataChange - else");
+                    Log.v(LOG_TAG,"***onMapReady - onDataChange - else");
                 }
 
 
@@ -183,7 +195,7 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
                 if(preferences.getString("tipoUsuarioValidado", "").equals("")){
                     mGoogleMap.setMyLocationEnabled(true);
                 } else {
-                    mGoogleMap.setMyLocationEnabled(true);
+                    //mGoogleMap.setMyLocationEnabled(true);
                     //getMyLocation("onCreateView");
                 }
 
@@ -317,11 +329,20 @@ public class DetailMapsFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public void onConnectionSuspended(int i) {
-        Toast.makeText(getContext(), "Conexión suspendida: " + String.valueOf(i), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Conexión suspendida: " + String.valueOf(i), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(getContext(), "Error de conexión: \n" + connectionResult.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Error de conexión: \n" + connectionResult.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void deleteMapPoint() {
+        Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_PROCESIONES);
+        Firebase myProcesion = myFirebaseRef.child(procesion.getId_procesion());
+        myProcesion.child("latitudActual").setValue("");
+        myProcesion.child("longitudActual").setValue("");
+
+        myMarkerProcesion.remove();
     }
 }

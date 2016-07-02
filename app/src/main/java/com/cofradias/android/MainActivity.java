@@ -144,6 +144,31 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
             Intent intentMenu = new Intent(MainActivity.this, LoginActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
+        } else if (id == R.id.nav_share_app) {
+
+            Firebase myFirebaseRef = new Firebase(Constants.ConfigFireBase.FIREBASE_URL + Constants.ConfigFireBase.FIREBASE_CHILD_CONFIGURACION);
+            myFirebaseRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                        Intent intentMenu = new Intent(Intent.ACTION_SEND);
+                        intentMenu.setType("text/plain");
+                        intentMenu.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
+                        String texto = getString(R.string.texto_share_app);
+                        texto = texto + snapshot.child("urlgoogleplay").getValue();
+                        texto = texto + "\n\n";
+                        intentMenu.putExtra(Intent.EXTRA_TEXT, texto);
+                        startActivity(Intent.createChooser(intentMenu, getString(R.string.texto_compartir_app)));
+                    }
+                }
+
+                @Override
+                public void onCancelled(FirebaseError error) { }
+            });
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

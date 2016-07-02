@@ -18,13 +18,23 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floation_button"
+        android:id="@+id/floation_button_posicion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/fab_margin_right"
         android:layout_marginBottom="@dimen/fab_margin_bottom"
         android:clickable="true"
         android:src="@drawable/ic_define_location"
+        android:layout_gravity="bottom|end"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floation_button_eliminar_posicion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/fab_margin_right"
+        android:layout_marginBottom="@dimen/fab_margin_bottom2"
+        android:clickable="true"
+        android:src="@drawable/ic_menu_delete_point"
         android:layout_gravity="bottom|end"/>
 
 </FrameLayout>

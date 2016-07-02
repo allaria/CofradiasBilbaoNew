@@ -81,6 +81,14 @@ public class DetailProcesionActivity extends AppCompatActivity {
         });
     }
 
+
+/*    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mapa_toolbar_action, menu);
+        return true;
+    }*/
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

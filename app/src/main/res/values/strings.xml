@@ -13,8 +13,12 @@
     <string name="menu_museo">Museo de Pasos</string>
     <string name="menu_procesiones">Procesiones</string>
     <string name="menu_login_usuarios">Usuarios</string>
+    <string name="menu_share_app">Compartir Aplicación</string>
+    <string name="texto_share_app">\nDeja que te recomiende esta aplicación\n\n</string>
+    <string name="texto_compartir_app">Compartir aplicación</string>
 
     <string name="action_share">Compartir</string>
+    <string name="action_eliminar_posicion">Eliminar coordenadas procesion</string>
     <string name="action_settings">Settings</string>
 
     <!-- Nombre pestañas cofradias -->
@@ -51,8 +55,16 @@
 
     <!-- Etiquetas fragmento mapas -->
     <string name="title_activity_maps">&#x200A;&#x200A;Mr. Cofrade</string>
-    <string name="permiso_gps_ok">Permiso concedido.</string>
-    <string name="permiso_gps_ko">Sin este permiso no es posible establecer la ubicación.</string>
+
+    <!-- Etiquetas permisos -->
+    <string name="permiso_gps_ok">Permiso registrado correctamente.</string>
+    <string name="permiso_gps_ko">Para poder establecer su ubicación es ncesario que acepte este permiso.</string>
+    <string name="permiso_storage_ok">Permiso registrado correctamente.</string>
+    <string name="permiso_storage_ko">Para poder compartir imágenes es necesario que acepte este permiso.</string>
+
+    <!-- Etiquetas Share Intent -->
+    <string name="error_share_intent">Se ha producido un erro a lintentar compartir la imagen.</string>
+    <string name="texto_compartir_imagen">Compartir aplicación</string>
 
     <!-- Etiquetas pantalla autentificación -->
     <string name="boton_aceptar">\t\t\t\t\t\tACEPTAR</string>

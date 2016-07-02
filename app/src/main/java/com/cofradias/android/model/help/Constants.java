@@ -34,5 +34,6 @@ public class Constants {
         public static final String FIREBASE_CHILD_GALERIA = "galeria";
         public static final String FIREBASE_CHILD_EVENTOS = "eventos";
         public static final String FIREBASE_CHILD_USUARIOS = "usuarios";
+        public static final String FIREBASE_CHILD_CONFIGURACION = "configuracion";
     }
 }

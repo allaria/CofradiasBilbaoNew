@@ -76,7 +76,7 @@ public class COPY_DetailMapsFragment extends Fragment implements OnMapReadyCallb
                     .build();
         }
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floation_button);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floation_button_posicion);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
