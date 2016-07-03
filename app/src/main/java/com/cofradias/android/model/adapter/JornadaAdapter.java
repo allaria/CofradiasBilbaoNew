@@ -113,6 +113,10 @@ public class JornadaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return (Evento) mNewObject.get(position);
     }
 
+    public EventoCabecera getSelectedEventoCabecera(int position) {
+        return (EventoCabecera) mNewObject.get(position);
+    }
+
     @Override
     public int getItemViewType(int position) {
 
@@ -123,12 +127,19 @@ public class JornadaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public class HolderCabecera extends RecyclerView.ViewHolder{
+    public class HolderCabecera extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView mTitle;
         public HolderCabecera(View cabeceraView) {
             super(cabeceraView);
             mTitle = (TextView)cabeceraView.findViewById(R.id.cabeceraEvento);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mListener.onClickCabecera(getLayoutPosition());
         }
     }
 
@@ -155,5 +166,7 @@ public class JornadaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public interface JornadaClickListener {
         void onClick(int position);
+
+        void onClickCabecera (int posicion);
     }
 }

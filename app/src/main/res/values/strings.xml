@@ -61,10 +61,22 @@
     <string name="permiso_gps_ko">Para poder establecer su ubicación es ncesario que acepte este permiso.</string>
     <string name="permiso_storage_ok">Permiso registrado correctamente.</string>
     <string name="permiso_storage_ko">Para poder compartir imágenes es necesario que acepte este permiso.</string>
+    <string name="permiso_calendar_ok">Permiso registrado correctamente.</string>
+    <string name="permiso_calendar_ko">Para poder registrar eventos en el calendario es necesario que acepte este permiso.</string>
 
     <!-- Etiquetas Share Intent -->
-    <string name="error_share_intent">Se ha producido un erro a lintentar compartir la imagen.</string>
+    <string name="error_share_intent">Se ha producido un error a lintentar compartir la imagen.</string>
     <string name="texto_compartir_imagen">Compartir aplicación</string>
+
+    <!--Etiquetas Evento en Calendario -->
+    <string name="event_sdk1_url">content://com.android.calendar/events</string>
+    <string name="event_sdk2_url">content://calendar/events</string>
+    <string name="reminder_sdk1_url">content://com.android.calendar/reminders</string>
+    <string name="reminder_sdk2_url">content://calendar/reminders</string>
+    <string name="event_calendar_descripcion">Evento organizado por la cofradía:</string>
+    <string name="event_calendar_ok">Evento registrado correctamente.</string>
+    <string name="event_calendar_existe">Evento ya registrado anteriormente en el calendario.</string>
+    <string name="event_calendar_ko">Se ha producido un error a lintentar registrar el evento en el calendario.</string>
 
     <!-- Etiquetas pantalla autentificación -->
     <string name="boton_aceptar">\t\t\t\t\t\tACEPTAR</string>
@@ -85,6 +97,6 @@
     <string name="imagen_evento">Imagen Evento</string>
     <string name="imagen_indicacion">Imagen Indicación</string>
     <string name="imagen_back_arrow">Atrás</string>
-
+    <string name="event_exist_calender">El evento ya esta registrado en el calendario.</string>
 
 </resources>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -119,8 +118,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (event.getAction() == KeyEvent.ACTION_DOWN)
                     if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER) ||
                             (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                        //do something
-                        //true because you handle the event
                         mButtonLogin.performClick();
                         return true;
                     }
@@ -134,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(preferences.getString("tipoUsuarioValidado", "").equals("")) {
 
-                            userLogged = mUser.getText().toString();
+                            userLogged = mUser.getText().toString().trim();
                             passwordLogged = mPassword.getText().toString();
                             //Log.v(LOG_TAG, "USUARIO LOGEADO:"+userLogged);
 
@@ -144,20 +141,16 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(DataSnapshot snapshot) {
 
-                                    //Log.v(LOG_TAG, "onDataChange"+snapshot.getChildrenCount());
                                     if (snapshot.getChildrenCount() != 0) {
                                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                            //Log.v(LOG_TAG, "onDataChange - FOR");
-
                                             usuarioFB = (String) dataSnapshot.child("user").getValue();
+
                                             if (userLogged.equals(usuarioFB) &
                                                     passwordLogged.equals(usuarioFB)) {
 
-                                                Log.v(LOG_TAG, "onDataChange - IF");
                                                 //Se actualizan las preferencias de usuario
                                                 SharedPreferences.Editor edit = preferences.edit();
 
-                                                //Log.v(LOG_TAG, "USUARIO LOGEADO:"+mUser.getText().toString());
                                                 if (userLogged.equals("admin")) {
                                                     edit.putString("tipoUsuarioValidado", "admin");
                                                     //mButtonPreferences.setVisibility(View.VISIBLE);
@@ -175,8 +168,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                                 finish();
                                             } else {
-
-                                                //Log.v(LOG_TAG, "onDataChange - ELSE DENTRO");
                                                 int intentos = REQUEST_SIGNUP - 1;
                                                 String mensaje = getResources().getString(R.string.login_message_ko_1)
                                                         + " " + intentos
@@ -196,13 +187,13 @@ public class LoginActivity extends AppCompatActivity {
                                             }
                                         }
                                     } else {
-                                        //Log.v(LOG_TAG, "onDataChange - ELSE");
                                         int intentos = REQUEST_SIGNUP - 1;
                                         String mensaje = getResources().getString(R.string.login_message_ko_1)
                                                 + " " + intentos
                                                 + " " + getResources().getString(R.string.login_message_ko_2);
                                         Toast.makeText(getApplicationContext(), String.valueOf(mensaje), Toast.LENGTH_SHORT).show();
                                         REQUEST_SIGNUP--;
+
                                         if (REQUEST_SIGNUP == 0) {
                                             mButtonLogin.setEnabled(false);
 
