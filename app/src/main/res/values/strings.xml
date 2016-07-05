@@ -17,6 +17,7 @@
     <string name="texto_share_app">\nDeja que te recomiende esta aplicación\n\n</string>
     <string name="texto_compartir_app">Compartir aplicación</string>
 
+    <string name="action_preferencias">Preferencias</string>
     <string name="action_share">Compartir</string>
     <string name="action_eliminar_posicion">Eliminar coordenadas procesion</string>
     <string name="action_settings">Settings</string>
@@ -77,6 +78,7 @@
     <string name="event_calendar_ok">Evento registrado correctamente.</string>
     <string name="event_calendar_existe">Evento ya registrado anteriormente en el calendario.</string>
     <string name="event_calendar_ko">Se ha producido un error a lintentar registrar el evento en el calendario.</string>
+    <string name="event_exist_calender">El evento ya esta registrado en el calendario.</string>
 
     <!-- Etiquetas pantalla autentificación -->
     <string name="boton_aceptar">\t\t\t\t\t\tACEPTAR</string>
@@ -97,6 +99,19 @@
     <string name="imagen_evento">Imagen Evento</string>
     <string name="imagen_indicacion">Imagen Indicación</string>
     <string name="imagen_back_arrow">Atrás</string>
-    <string name="event_exist_calender">El evento ya esta registrado en el calendario.</string>
+    <string name="imagen_ayuda_evento_cabecera">Ayuda Cabecera</string>
+    <string name="imagen_ayuda_evento_flecha">Ayuda Flecha</string>
+
+    <!-- Etiquetas ayuda eventos -->
+    <string name="titulo_ayuda_eventos">Ayuda Eventos</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="saltar">SALTAR</string>
+    <string name="iniciar">INICIAR</string>
+    <string name="ayuda_evento_mostrar_ayuda">No volver a ver la ayuda.</string>
+    <string name="ayuda_evento_slide_1_titulo">Añadir eventos al calendario</string>
+    <string name="ayuda_evento_slide_1_descripcion">Al pulsar sobre la cabecera de los los eventos para un determinado día se procederá a añadir estos en el calendario. Esta operación se puede realizar para todos los días mostrados.</string>
+    <string name="ayuda_evento_slide_2_titulo">Acceder al evento</string>
+    <string name="ayuda_evento_slide_2_descripcion">Al pulsar sobre los diferentes eventos accedera a la cofradía que organiza al evento seleccionado.</string>
+
 
 </resources>

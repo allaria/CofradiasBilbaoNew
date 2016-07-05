@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<preference-headers
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header
+        android:fragment="com.cofradias.android.view.MyPreferencesAdminFragment"
+        android:title="Preferencias de Administración"
+        android:summary="Acceder a las preferencias establecidas para la administración de la aplicación." />
+
+    <header
+        android:fragment="com.cofradias.android.view.MyPreferencesFragment"
+        android:title="Preferencias de Usuario"
+        android:summary="Acceder a las preferencias establecidas para la administración de la aplicación." />
+
+</preference-headers>

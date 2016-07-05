@@ -2,9 +2,9 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <PreferenceCategory
-        android:title="Usuario de Mr. Cofrade">
-        <CheckBoxPreference
-            android:key="MostrarAyudaEventos"
-            android:title="Mostrar Ayuda"/>
+        android:title="Administrador de Mr. Cofrade">
+        <EditTextPreference
+            android:key="tipoUsuarioValidado"
+            android:title="El usuario es:"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -100,6 +101,31 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
 
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_toolbar_action, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case R.id.menu_action_preferencias:
+            {
+                Intent intent = new Intent();
+                intent.setClassName(this, "com.cofradias.android.MyPreferencesActivity");
+                startActivity(intent);
+                return true;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -117,7 +143,8 @@ public class MainActivity extends AppCompatActivity implements CofradiaAdapter.C
         int id = item.getItemId();
 
         if (id == R.id.nav_calendario_eventos) {
-            Intent intentMenu = new Intent(MainActivity.this, JornadaActivity.class);
+            //Intent intentMenu = new Intent(MainActivity.this, JornadaActivity.class);
+            Intent intentMenu = new Intent(MainActivity.this, AyudaJornadaActivity.class);
             intentMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMenu);
         } else if (id == R.id.nav_galeria) {
